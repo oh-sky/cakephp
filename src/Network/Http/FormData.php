@@ -151,13 +151,13 @@ class FormData implements Countable
         if (is_resource($value)) {
             $content = stream_get_contents($value);
             if (stream_is_local($value)) {
-                $finfo = new finfo(FILEINFO_MIME);
+                $finfo = new finfo(FILEINFO_MIME_TYPE);
                 $metadata = stream_get_meta_data($value);
                 $contentType = $finfo->file($metadata['uri']);
                 $filename = basename($metadata['uri']);
             }
         } else {
-            $finfo = new finfo(FILEINFO_MIME);
+            $finfo = new finfo(FILEINFO_MIME_TYPE);
             $value = substr($value, 1);
             $filename = basename($value);
             $content = file_get_contents($value);
